@@ -265,3 +265,22 @@ body {
 
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
+.Light {
+    color: #2ecc71; /* verde */
+    font-weight: bold;
+}
+
+.GoGreen {
+    color: #27ae60; /* verde mais escuro */
+    font-weight: bold;
+}
+
+.Bonapetit {
+    color: #c6a85a; /* dourado */
+    font-weight: bold;
+}
+
+.All-Gourmet {
+    color: #e67e22; /* laranja/destaque */
+    font-weight: bold;
+}
