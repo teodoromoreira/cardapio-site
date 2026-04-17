@@ -1,0 +1,267 @@
+/* PALETA SUAVE */
+:root {
+  --gold-soft: #c6a85a;     /* dourado suave */
+  --gold-light: #e6dcc3;    /* dourado bem claro */
+  --brown: #4a3425;         /* marrom elegante */
+  --gray-dark: #2f2f2f;     /* fundo escuro leve */
+  --gray-light: #f4f4f4;    /* fundo principal */
+  --white: #ffffff;
+}
+
+/* BODY */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(
+        to right,
+        #4a3425 10%,
+        #5a3d2a 30%,
+        #6b4a35 60%,
+        #7a5a45 80%,
+        #8a6a55 100%
+    );
+}
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: var(--gray-light);
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    width: 130px;
+}
+
+/* LAYOUT */
+.layout {
+    display: flex;
+}
+
+/* MENU LATERAL */
+.sidebar {
+    width: 150px;
+    background: var(--brown);
+    color: #eee;
+    padding: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar h3 {
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    color: var(--gold-soft);
+}
+
+/* CONTEÚDO */
+.conteudo {
+    flex: 1;
+    padding: 30px;
+    min-height: 80-vh;
+}
+
+/* BANNER */
+.topo img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* AVISO */
+.aviso {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #beb6b6;
+}
+
+/* CARDS */
+.card {
+    background: var(--white);
+    padding: 16px 18px;
+    margin: 0;
+    border-radius: 10px;
+    width: 300px;
+    border: 1px solid #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+
+    transition: all 0.4s ease;
+    opacity: 0.6;
+
+}
+
+/* TÍTULOS */
+.card h2 {
+    font-size: 20px;
+    color: var(--brown);
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--gold-soft);
+    padding-left: 10px;
+}
+
+/* LISTA */
+.card ul {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.card li {
+    margin: 4px 0;
+    line-height: 1.3;
+    font-size: 18px;
+}
+.card:hover {
+    transform: translateY(-3px);
+}
+.cards-conteiner {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+.card.ativo {
+    opacity: 1;
+    transform: translateY(-15px) scale(1.05);
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+.card.inativo {
+    opacity: 0.4;
+    transform: scale(0.95);
+}
+.card.apareceu {
+    opacity: 1;
+}
+/* OBS */
+.obs {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #888;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+}
+.btn-fixo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+.btn-pedir {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 18px;
+
+    background: var(--gold-soft);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+
+    font-size: 20px;
+    transition: 0.3s;
+}
+.btn-pedir:hover {
+    background: var(--brown);
+}
+.footer {
+    background: var(--gray-light); /* marrom escuro */
+    color: #000000;
+    margin-top: 40px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    padding: 5px 10px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* LOGO */
+.footer-logo img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    font-size: 14px;
+    color: #000000;
+}
+
+/* COLUNAS */
+.footer-info h4 {
+    color: var(--gold-soft); /* dourado suave */
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.footer-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* LINHA FINAL */
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+#topo {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: none;
+}
+.badge.hoje {
+    position: absolute;
+    top:10px;
+    right: 10px;
+
+    background: var(--gold-soft);
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+    
+    padding: 5px 10px;
+    border-radius: 20px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
