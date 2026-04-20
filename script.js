@@ -86,7 +86,7 @@ if (hoje >= 1 && hoje <= 5) {
     }
 }
 const btnAdmin = document.getElementById("btnAdmin");
-const painel = document.getElementById("adminpanel");
+const painel = document.getElementById("adminPanel");
 
 btnAdmin.addEventListener("click", () => {
     painel.classList.add("ativo");
@@ -125,7 +125,11 @@ window.addEventListener("load", () => {
 });
 function carregarInputs() {
     const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
-    if (salvo) {
-        document.getElementById("adm-" + dia).value = localStorage.getItem("cardapio-" + dia);
-    }
+
+    dias.forEach(dia => {
+        const salvo = localStorage.getItem("cardapio-" + dia);
+        if (salvo) {
+            document.getElementById("adm-" + dia).value = salvo;
+        }
+    });
 }
