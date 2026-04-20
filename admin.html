@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Admin - Cardápio</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="login" id="login">
+    <h2>Login</h2>
+    <input type="password" id="senha" placeholder="Digite a senha">
+    <button onclick="logar()">Entrar</button>
+</div>
+
+<div class="painel" id="painel">
+    <h1>Administração do Cardápio</h1>
+
+    <!-- SEGUNDA -->
+    <div class="dia">
+        <h3>Segunda-feira</h3>
+
+        <label>Prato Principal</label>
+        <input data-dia="segunda" data-tipo="principal">
+
+        <label>Light</label>
+        <input data-dia="segunda" data-tipo="light">
+
+        <label>Go Green</label>
+        <input data-dia="segunda" data-tipo="gogreen">
+
+        <label>Bonapetit</label>
+        <input data-dia="segunda" data-tipo="bonapetit">
+
+        <label>All Gourmet</label>
+        <input data-dia="segunda" data-tipo="allgourmet">
+    </div>
+
+    <div class="dia">
+        <h3>Terça-feira</h3>
+
+        <input placeholder="Prato Principal" data-dia="terca" data-tipo="principal">
+        <input placeholder="Light" data-dia="terca" data-tipo="light">
+        <input placeholder="Go Green" data-dia="terca" data-tipo="gogreen">
+        <input placeholder="Bonapetit" data-dia="terca" data-tipo="bonapetit">
+        <input placeholder="All Gourmet" data-dia="terca" data-tipo="allgourmet">
+    </div>
+
+    <div class="dia">
+        <h3>Quarta-feira</h3>
+
+        <input placeholder="Prato Principal" data-dia="quarta" data-tipo="principal">
+        <input placeholder="Light" data-dia="quarta" data-tipo="light">
+        <input placeholder="Go Green" data-dia="quarta" data-tipo="gogreen">
+        <input placeholder="Bonapetit" data-dia="quarta" data-tipo="bonapetit">
+        <input placeholder="All Gourmet" data-dia="quarta" data-tipo="allgourmet">
+    </div>
+    <div class="dia">
+        <h3>Quinta-feira</h3>
+
+        <input placeholder="Prato Principal" data-dia="quinta" data-tipo="principal">
+        <input placeholder="Light" data-dia="quinta" data-tipo="light">
+        <input placeholder="Go Green" data-dia="quinta" data-tipo="gogreen">
+        <input placeholder="Bonapetit" data-dia="quinta" data-tipo="bonapetit">
+        <input placeholder="All Gourmet" data-dia="quinta" data-tipo="allgourmet">
+    </div>
+    <div class="dia">
+        <h3>Sexta-feira</h3>
+
+        <input placeholder="Prato Principal" data-dia="sexta" data-tipo="principal">
+        <input placeholder="Light" data-dia="sexta" data-tipo="light">
+        <input placeholder="Go Green" data-dia="sexta" data-tipo="gogreen">
+        <input placeholder="Bonapetit" data-dia="sexta" data-tipo="bonapetit">
+        <input placeholder="All Gourmet" data-dia="sexta" data-tipo="allgourmet">
+    </div>
+
+    <div class="admin-acoes">
+            <button onclick="salvarCardapio()">Salvar Cardápio</button>
+            <button onclick="fecharAdmin()">Fechar</button>
+    </div>
+    <!-- COPIA PARA OUTROS DIAS -->
+    
+    <button onclick="salvar()">Salvar</button>
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

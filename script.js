@@ -2,11 +2,7 @@
 const botaoTopo = document.getElementById("topo");
 
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-        botaoTopo.style.display = "block";
-    } else {
-        botaoTopo.style.display = "none";
-    }
+    botaoTopo.style.display = window.scrollY > 200 ? "block" : "none";
 });
 
 botaoTopo.addEventListener("click", () => {
@@ -16,15 +12,97 @@ botaoTopo.addEventListener("click", () => {
     });
 });
 
-
-// SELECIONA TODOS OS CARDS
+// CONFIG
+const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
+const tipos = ["light", "gogreen", "bonapetit", "allgourmet"];
 const cards = document.querySelectorAll(".card");
 
+// 🔥 PADRÃO DE CORES (corrigido)
+const specialClassMap = {
+    "light": "light",
+    "gogreen": "gogreen",
+    "bonapetit": "bonapetit",
+    "all gourmet": "gourmet",
+    "allgourmet": "gourmet"
+};
 
-// CLIQUE NOS CARDS (EFEITO POPUP + APAGAR OUTROS)
+// 🔥 FORMATA LINHA (mantém cores)
+function formatLine(line) {
+    const trimmed = line.trim();
+    if (!trimmed) return "";
+
+    const match = trimmed.match(/^(.+?)\s*:\s*(.+)$/);
+
+    if (!match) {
+        return `<li>${trimmed}</li>`;
+    }
+
+    const label = match[1].toLowerCase().trim();
+    const text = match[2].trim();
+
+    const cssClass = specialClassMap[label];
+
+    if (cssClass) {
+        return `<li><span class="${cssClass}">${match[1]}:</span> ${text}</li>`;
+    }
+
+    return `<li>${trimmed}</li>`;
+}
+
+
+// CARREGAR INPUTS
+function carregarInputs() {
+    dias.forEach(dia => {
+        const textarea = document.getElementById("adm-" + dia);
+        if (!textarea) return;
+
+        const salvo = localStorage.getItem("cardapio-" + dia);
+        textarea.value = salvo ?? menuDefaults[dia];
+    });
+}
+
+// FECHAR ADMIN
+function fecharAdmin() {
+    painel.classList.remove("ativo");
+}
+
+// 🔥 DESTAQUE DO DIA (CORRIGIDO)
+function highlightTodayCard() {
+    const hoje = new Date().getDay();
+    if (hoje < 1 || hoje > 5) return;
+
+    const id = dias[hoje - 1];
+    const cardHoje = document.getElementById(id);
+    if (!cardHoje) return;
+
+    // remove badge antigo
+    document.querySelectorAll(".badge-hoje").forEach(b => b.remove());
+
+    cards.forEach(c => {
+        c.classList.remove("ativo");
+        c.classList.add("inativo");
+    });
+
+    cardHoje.classList.remove("inativo");
+    cardHoje.classList.add("ativo");
+
+    const badge = document.createElement("span");
+    badge.innerText = "⭐ HOJE";
+    badge.className = "badge-hoje";
+
+    cardHoje.appendChild(badge);
+
+    setTimeout(() => {
+        cardHoje.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 300);
+}
+
+// CLICK NOS CARDS
 cards.forEach(card => {
     card.addEventListener("click", () => {
-
         cards.forEach(c => {
             c.classList.remove("ativo");
             c.classList.add("inativo");
@@ -32,104 +110,28 @@ cards.forEach(card => {
 
         card.classList.remove("inativo");
         card.classList.add("ativo");
-
     });
 });
 
-
-// ANIMAÇÃO AO ROLAR (CARDS APARECENDO)
-const sections = document.querySelectorAll(".card");
-
+// ANIMAÇÃO SCROLL
 window.addEventListener("scroll", () => {
-    sections.forEach(sec => {
-        const posicao = sec.getBoundingClientRect().top;
+    cards.forEach(card => {
+        const posicao = card.getBoundingClientRect().top;
 
         if (posicao < window.innerHeight - 50) {
-            sec.classList.add("apareceu");
+            card.classList.add("apareceu");
         }
     });
 });
 
+function carregarCardapio() {
+    document.querySelectorAll(".texto").forEach(el => {
+        const dia = el.dataset.dia;
+        const tipo = el.dataset.tipo;
 
-// 🔥 DESTAQUE AUTOMÁTICO DO DIA (EFEITO POPUP AO ABRIR)
-const hoje = new Date().getDay();
-const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
-
-if (hoje >= 1 && hoje <= 5) {
-    const id = dias[hoje - 1];
-    const cardHoje = document.getElementById(id);
-
-    if (cardHoje) {
-
-        // deixa todos apagados
-        cards.forEach(c => {
-            c.classList.remove("ativo");
-            c.classList.add("inativo");
-        });
-
-        // ativa o card do dia
-        cardHoje.classList.remove("inativo");
-        cardHoje.classList.add("ativo");
-
-        // CRIAR BADGE "HOJE" 
-        const badge = document.createElement("span");
-        badge.innerText = "⭐ HOJE";
-        badge.classList.add("badge-hoje");
-
-        cardHoje.appendChild(badge);
-
-        // centraliza na tela
-        cardHoje.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    }
-}
-const btnAdmin = document.getElementById("btnAdmin");
-const painel = document.getElementById("adminPanel");
-
-btnAdmin.addEventListener("click", () => {
-    painel.classList.add("ativo");
-    carregarInputs();
-});
-function fecharAdmin() {
-    painel.classList.remove("ativo");
-}
-// Salvar
-function salvarCardapio() {
-    const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
-
-    dias.forEach(dia => {
-        const valor = document.getElementById("adm-" + dia).value;
-        localStorage.setItem("cardapio-" + dia, valor);
-
-        const card = document.getElementById(dia);
-        if (card) {
-            card.querySelector("ul").innerHTML = valor;
-        }
-    });
-    alert("Cardápio atualizado com sucesso!");
-}
-//Carregar ao abrir site
-window.addEventListener("load", () => {
-    const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
-
-    dias.forEach(dia => {
-        const salvo = localStorage.getItem("cardapio-" + dia);
-        const card = document.getElementById(dia);
-
-        if (salvo && card) {
-            card.querySelector("ul").innerHTML = salvo;
-        }
-    });
-});
-function carregarInputs() {
-    const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
-
-    dias.forEach(dia => {
-        const salvo = localStorage.getItem("cardapio-" + dia);
-        if (salvo) {
-            document.getElementById("adm-" + dia).value = salvo;
-        }
+        const valor = localStorage.getItem(`${dia}-${tipo}`);
+        if (valor) el.textContent = valor;
     });
 }
+
+window.addEventListener("load", carregarCardapio);

@@ -13,30 +13,7 @@
     </header>
 <div class="layout">
 
-   <button id="btnAdmin">Admin</button>
 
-   <div id="adminPanel" class="admin-panel">
-    <h2>Área de Administração</h2>
-
-    <label>Segunda:</label>
-    <textarea id="adm-segunda"></textarea>
-
-    <label>Terça:</label>
-    <textarea id="adm-terca"></textarea>
-
-    <label>Quarta:</label>
-    <textarea id="adm-quarta"></textarea>   
-
-    <label>Quinta:</label>
-    <textarea id="adm-quinta"></textarea>
-
-    <label>Sexta:</label>
-    <textarea id="adm-sexta"></textarea>
-    
-    <button onclick="salvarCardapio()">Salvar Cardápio</button>
-    <button onclick="fecharAdmin()">Fechar </button>
-    </div> 
-    
     <!-- CONTEÚDO -->
     <main class="conteudo">
 
@@ -56,10 +33,10 @@
                 <li>Corn dog</li>
                 <li>Polenta cremosa</li>
                 <li>Sopa: Mandioquinha</li>
-                <li><span class="Light">Light:</span> Filé de frango acebolado</li>
-                <li><span class="GoGreen">Go Green:</span> Kibe de soja</li>
-                <li><span class="Bonapetit">Bonapetit:</span> Feijão tropeiro (pedido até sexta 17:00)</li>
-                <li><span class="All-Gourmet">All Gourmet:</span> Lasanha de calabresa (R$ 21,43)</li>
+                <li><span class="Light">Light:</span> <span class="texto" data-dia="segunda" data-tipo="light"></span></li>
+                <li><span class="GoGreen">Go Green:</span> <span class="texto" data-dia="segunda" data-tipo="gogreen"></span></li>
+                <li><span class="Bonapetit">Bonapetit:</span> <span class="texto" data-dia="segunda" data-tipo="bonapetit"></span></li>
+                <li><span class="All-Gourmet">All Gourmet:</span> <span class="texto" data-dia="segunda" data-tipo="allgourmet"></span></li>
             </ul>
 
             <p class="obs">Pedidos de Segunda-Feira devem ser feitos até Sexta-Feira às 17h</p>
@@ -75,10 +52,10 @@
                 <li>Carne assada molho escuro</li>
                 <li>Cenoura sauté</li>
                 <li>Sopa: Creme de cebola</li>
-                <li><span class="Light">Light:</span> Isca de carne acebolada</li>
-                <li><span class="GoGreen">Go Green:</span> Omelete de forno de legumes</li>
-                <li><span class="Bonapetit">Bonapetit:</span> Lanche de carne louca</li>
-                <li><span class="All-Gourmet">All Gourmet:</span> Hambúrguer com fritas (R$ 21,43)</li>
+                <li><span class="Light">Light:</span> <span class="texto" data-dia="terca" data-tipo="light"></span></li>
+                <li><span class="GoGreen">Go Green:</span> <span class="texto" data-dia="terca" data-tipo="gogreen"></span></li>
+                <li><span class="Bonapetit">Bonapetit:</span> <span class="texto" data-dia="terca" data-tipo="bonapetit"></span></li>
+                <li><span class="All-Gourmet">All Gourmet:</span> <span class="texto" data-dia="terca" data-tipo="allgourmet"></span></li>
                 <p class="obs">Pedidos de Terça-Feira devem ser feitos até Segunda-Feira às 17h</p>
             </ul>
         </section>
@@ -92,10 +69,10 @@
                 <li>Mini virado</li>
                 <li>Banana milanesa</li>
                 <li>Sopa: Canja</li>
-                <li><span class="Light">Light:</span> Peixe grelhado</li>
-                <li><span class="GoGreen">Go Green:</span> Macarrão ao molho de queijo</li>
-                <li><span class="Bonapetit">Bonapetit:</span> Lanche de calabresa</li>
-                <li><span class="All-Gourmet">All Gourmet:</span> Hambúrguer com fritas (R$ 21,43)</li>
+                <li><span class="Light">Light:</span> <span class="texto" data-dia="quarta" data-tipo="light"></span></li>
+                <li><span class="GoGreen">Go Green:</span> <span class="texto" data-dia="quarta" data-tipo="gogreen"></span></li>
+                <li><span class="Bonapetit">Bonapetit:</span> <span class="texto" data-dia="quarta" data-tipo="bonapetit"></span></li>
+                <li><span class="All-Gourmet">All Gourmet:</span> <span class="texto" data-dia="quarta" data-tipo="allgourmet"></span></li>
                 <p class="obs">Pedidos de Quarta-Feira devem ser feitos até Terça-Feira às 17h</p>
             </ul>
         </section>
@@ -108,10 +85,10 @@
                 <li>Pernil ao molho shoyu</li>
                 <li>Macarrão A/O</li>
                 <li>Sopa: Mandioca</li>
-                <li><span class="Light">Light:</span> Carne moida com legumes</li>
-                <li><span class="GoGreen">Go Green:</span> Soja refogada com legumes</li>
-                <li><span class="Bonapetit">Bonapetit:</span> Lanche de Pernil</li>
-                <li><span class="All-Gourmet">All Gourmet:</span> Alcatra com fritas (R$ 21,43)</li>
+                <li><span class="Light">Light:</span> <span class="texto" data-dia="quinta" data-tipo="light"></span></li>
+                <li><span class="GoGreen">Go Green:</span> <span class="texto" data-dia="quinta" data-tipo="gogreen"></span></li>
+                <li><span class="Bonapetit">Bonapetit:</span> <span class="texto" data-dia="quinta" data-tipo="bonapetit"></span></li>
+                <li><span class="All-Gourmet">All Gourmet:</span> <span class="texto" data-dia="quinta" data-tipo="allgourmet"></span></li>
                 <p class="obs">Pedidos de Quinta-Feira devem ser feitos até Quarta-Feira às 17h</p>
             </ul>
         </section>
@@ -124,10 +101,10 @@
                 <li>Panqueca de carne</li>
                 <li>Legumes sauté</li>
                 <li>Sopa: Caldo verde</li>
-                <li><span class="Light">Light:</span> Isca de Frango</li>
-                <li><span class="GoGreen">Go Green:</span> Lanche de soja com fritas</li>
-                <li><span class="Bonapetit">Bonapetit:</span> Lanche de buraco quente</li>
-                <li><span class="All-Gourmet">All Gourmet:</span> Alcatra com fritas (R$ 21,43)</li>
+                <li><span class="Light">Light:</span> <span class="texto" data-dia="sexta" data-tipo="light"></span></li>
+                <li><span class="GoGreen">Go Green:</span> <span class="texto" data-dia="sexta" data-tipo="gogreen"></span></li>
+                <li><span class="Bonapetit">Bonapetit:</span> <span class="texto" data-dia="sexta" data-tipo="bonapetit"></span></li>
+                <li><span class="All-Gourmet">All Gourmet:</span> <span class="texto" data-dia="sexta" data-tipo="allgourmet"></span></li>
                 <p class="obs">Pedidos de Sexta-Feira devem ser feitos até Quinta-Feira às 17h</p>
             </ul>
         </section>
