@@ -85,3 +85,47 @@ if (hoje >= 1 && hoje <= 5) {
         });
     }
 }
+const btnAdmin = document.getElementById("btnAdmin");
+const painel = document.getElementById("adminpanel");
+
+btnAdmin.addEventListener("click", () => {
+    painel.classList.add("ativo");
+    carregarInputs();
+});
+function fecharAdmin() {
+    painel.classList.remove("ativo");
+}
+// Salvar
+function salvarCardapio() {
+    const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
+
+    dias.forEach(dia => {
+        const valor = document.getElementById("adm-" + dia).value;
+        localStorage.setItem("cardapio-" + dia, valor);
+
+        const card = document.getElementById(dia);
+        if (card) {
+            card.querySelector("ul").innerHTML = valor;
+        }
+    });
+    alert("Cardápio atualizado com sucesso!");
+}
+//Carregar ao abrir site
+window.addEventListener("load", () => {
+    const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
+
+    dias.forEach(dia => {
+        const salvo = localStorage.getItem("cardapio-" + dia);
+        const card = document.getElementById(dia);
+
+        if (salvo && card) {
+            card.querySelector("ul").innerHTML = salvo;
+        }
+    });
+});
+function carregarInputs() {
+    const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
+    if (salvo) {
+        document.getElementById("adm-" + dia).value = localStorage.getItem("cardapio-" + dia);
+    }
+}
