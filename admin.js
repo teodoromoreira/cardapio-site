@@ -44,3 +44,13 @@ function logar() {
         alert("Senha incorreta!");
     }
 }
+function carregarCardapio() {
+    document.querySelectorAll(".cardapio-dia").forEach(El => {
+        const dia = El.dataset.dia;
+        const tipo = El.dataset.tipo;
+
+        const valor = localStorage.getItem(`cardapio-${dia}-${tipo}`);
+        if (valor) El.textContent = valor;
+    });
+}
+window.addEventListener("load", carregarCardapio);
