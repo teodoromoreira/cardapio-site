@@ -11,7 +11,7 @@ function logar() {
     }
 }
 
-function salvar() {
+function salvarCardapio() {
     const inputs = document.querySelectorAll("input[data-dia]");
 
     inputs.forEach(input => {
