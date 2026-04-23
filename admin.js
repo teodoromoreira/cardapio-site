@@ -18,8 +18,7 @@ function salvar() {
         const dia = input.dataset.dia;
         const tipo = input.dataset.tipo;
 
-        const chave = `${dia}-${tipo}`;
-        localStorage.setItem(chave, input.value);
+        localStorage.setItem(`${dia}-${tipo}`, input.value);
     });
 
     alert("Salvo com sucesso!");
