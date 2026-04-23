@@ -1,15 +1,24 @@
+import { db } from "./firebase.js";
+import { doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
 
-function carregarCardapio() {
+function escutarCardapio() {
     dias.forEach(dia => {
-        const dados = JSON.parse(localStorage.getItem("cardapio-" + dia)) || [];
+        const ref = doc(db, "cardapio", dia);
 
-        const elementos = document.querySelectorAll(`.texto[data-dia="${dia}"]`);
+        onSnapshot(ref, (docSnap) => {
+            if (!docSnap.exists()) return;
 
-        elementos.forEach((el, i) => {
-            el.innerText = dados[i] || "-";
+            const dados = docSnap.data().itens;
+
+            const elementos = document.querySelectorAll(`.texto[data-dia="${dia}"]`);
+
+            elementos.forEach((el, i) => {
+                el.innerText = dados[i] || "-";
+            });
         });
     });
 }
 
-window.addEventListener("load", carregarCardapio);
+window.addEventListener("load", escutarCardapio);
