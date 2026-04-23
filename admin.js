@@ -1,39 +1,46 @@
-const SENHA = "1234";
+const dias = ["segunda", "terca", "quarta", "quinta", "sexta"];
+
+function salvarCardapio() {
+    dias.forEach(dia => {
+        const valores = [];
+
+        for (let i = 0; i < 4; i++) {
+            const input = document.querySelector(`input[data-dia="${dia}"][data-index="${i}"]`);
+            valores.push(input?.value || "");
+        }
+
+        localStorage.setItem("cardapio-" + dia, JSON.stringify(valores));
+    });
+
+    alert("✅ Cardápio salvo com sucesso!");
+}
+
+function carregarAdmin() {
+    dias.forEach(dia => {
+        const dados = JSON.parse(localStorage.getItem("cardapio-" + dia)) || [];
+
+        for (let i = 0; i < 4; i++) {
+            const input = document.querySelector(`input[data-dia="${dia}"][data-index="${i}"]`);
+            if (input) input.value = dados[i] || "";
+        }
+    });
+}
+
+window.addEventListener("load", carregarAdmin);
+
+function abrirAdmin() {
+    const painel = document.querySelector(".admin-panel");
+    painel.classList.toggle("ativo");
+}  
+
+const SENHA = "admin123"; // Defina sua senha aqui
 
 function logar() {
     const valor = document.getElementById("senha").value;
-
     if (valor === SENHA) {
         document.getElementById("login").style.display = "none";
-        document.getElementById("painel").style.display = "block";
+        document.querySelector(".admin-panel").style.display = "block";
     } else {
-        alert("Senha incorreta");
+        alert("Senha incorreta!");
     }
 }
-
-function salvarCardapio() {
-    const inputs = document.querySelectorAll("input[data-dia]");
-
-    inputs.forEach(input => {
-        const dia = input.dataset.dia;
-        const tipo = input.dataset.tipo;
-
-        localStorage.setItem(`${dia}-${tipo}`, input.value);
-    });
-
-    alert("Salvo com sucesso!");
-}
-
-function carregar() {
-    const inputs = document.querySelectorAll("input[data-dia]");
-
-    inputs.forEach(input => {
-        const dia = input.dataset.dia;
-        const tipo = input.dataset.tipo;
-
-        const chave = `${dia}-${tipo}`;
-        input.value = localStorage.getItem(chave) || "";
-    });
-}
-
-window.addEventListener("load", carregar);

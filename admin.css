@@ -39,3 +39,27 @@ body {
     margin: 5px 0 10px;
     padding: 8px;
 }
+
+h3 {
+    margin-top: 20px;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    background: #c6a85a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
